@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.container-height {
+  height: calc(100vh - 80px);
+}
+
+.toolbar-style {
+  background-color: #212121;
+  height: 72px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #ffffff;
+}
