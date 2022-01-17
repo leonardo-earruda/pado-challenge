@@ -3,7 +3,7 @@ This project was generated with Angular CLI version 13.1.3.
 ## Run the application:
 1. Clone this repo.
 
-         https://github.com/leonardo-earruda/pado-challenge.git
+    git clone  https://github.com/leonardo-earruda/pado-challenge.git
 
 2. Run npm-install.
 
