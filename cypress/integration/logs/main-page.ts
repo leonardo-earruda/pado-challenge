@@ -14,7 +14,7 @@ describe('main page', () => {
     it('has the correct select property', () => {
       cy.get('.mat-select-min-line').should('contain.text', 'ID do usuário');
     });
-    it('has the correct select propery when visualizing by lockId', () => {
+    it('has the correct select property', () => {
       cy.get('.mat-select-arrow-wrapper').click();
       cy.get('#mat-option-0').should('contain.text', 'ID da fechadura');
     });
@@ -33,6 +33,34 @@ describe('main page', () => {
         'Mac Adress',
       ];
       validateColumns('.mat-table thead th', allColumns);
+    });
+    it('has the correct header property when visualizing by lockId', () => {
+      cy.get('.mat-select-arrow-wrapper').click();
+      cy.get('#mat-option-0').click();
+      cy.get('.mat-table thead th').should('contain.text', 'ID da fechadura');
+    });
+  });
+
+  describe('filter properties', () => {
+    it('it is not case sensitive', () => {
+      cy.get('#mat-input-0').type('MARIA DOS SANTOS');
+      cy.get('.cdk-column-userName').should('exist');
+    });
+    it('filters by userId', () => {
+      cy.get('#mat-input-0').type('ffb2b0c8-c911-435e-b53d-1093aa774da1');
+      cy.get('.cdk-column-userId').should('exist');
+    });
+    it('filters by lockId when visualizing table by lockId', () => {
+      cy.get('.mat-select-arrow-wrapper').click();
+      cy.get('#mat-option-0').click();
+      cy.get('#mat-input-0').type('f062c159-749a-405d-88ec-55e54c783814');
+      cy.get('.cdk-column-lockId').should('exist');
+    });
+    it('filters by mac adress when visualizing table by lockId', () => {
+      cy.get('.mat-select-arrow-wrapper').click();
+      cy.get('#mat-option-0').click();
+      cy.get('#mat-input-0').type('74:D2:85:1D:64:D7');
+      cy.get('.cdk-column-macAdress').should('exist');
     });
   });
 

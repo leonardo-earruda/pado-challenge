@@ -1,27 +1,20 @@
-# PadoChallengeFrontend
+This project was generated with Angular CLI version 13.1.3.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+## Run the application:
+1. Clone this repo.
 
-## Development server
+         https://github.com/leonardo-earruda/pado-challenge.git
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+2. Run npm-install.
 
-## Code scaffolding
+3. Run the development server on port 4200. It's important that the project will be running on port 4200 due to Cypress configs.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+4. Navigate to `http://localhost:4200/`.
 
-## Build
+## Run Cypress tests:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Run the application on port 4200.
 
-## Running unit tests
+2. Run npx cypress open
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Click run all tests on top-right of the opened window.

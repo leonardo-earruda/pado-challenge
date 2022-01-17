@@ -42,8 +42,7 @@ export class AcessLogsTableComponent implements OnInit {
     this.fetchLogs();
   }
 
-  public fetchLogs() {
-    this.dataSource.data = [];
+  private fetchLogs(): void {
     this.logService.fetchData().subscribe((res) => {
       res.reverse();
       this.allLogs = res;
@@ -51,16 +50,18 @@ export class AcessLogsTableComponent implements OnInit {
     });
   }
 
-  public filtro() {
-    let listraFiltrada = [];
+  public filtro(): void {
+    const filtradaPorUsuario = this.allLogs.filter((log) => this.filtrarListaPorUsuario(log));
+    const filtradaPorFechadura = this.allLogs.filter((log) => this.filtrarPorFechadura(log));
+    let listaFiltrada = [];
 
     if (this.visualizadoPorUsuario) {
-      listraFiltrada = this.allLogs.filter((log) => this.filtrarListaPorUsuario(log));
+      listaFiltrada = filtradaPorUsuario;
     } else {
-      listraFiltrada = this.allLogs.filter((log) => this.filtrarPorFechadura(log));
+      listaFiltrada = filtradaPorFechadura;
     }
 
-    this.dataSource.data = listraFiltrada;
+    this.dataSource.data = listaFiltrada;
   }
 
   private filtrarPorFechadura(log: any) {
