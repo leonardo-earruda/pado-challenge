@@ -7,7 +7,7 @@ This project was generated with Angular CLI version 13.1.3.
 
 2. Run npm-install.
 
-3. Run the development server on port 4200. It's important that the project will be running on port 4200 due to Cypress configs.
+3. Run the development server on port 4200. It's important that the project is running on port 4200 due to Cypress configs.
 
 4. Navigate to `http://localhost:4200/`.
 
