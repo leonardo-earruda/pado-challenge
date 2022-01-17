@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Log } from 'src/app/modules/dto/log-dto';
+import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { LogService } from 'src/app/modules/services/logs/logs.service';
-import { FormArray, FormControl } from '@angular/forms';
-import { MetodoAberturaEnum, TipoDoEventoEnum } from 'src/app/modules/enums/dados.enum';
 import moment from 'moment';
+import { Log } from 'src/app/modules/dto/log-dto';
+import { MetodoAberturaEnum, TipoDoEventoEnum } from 'src/app/modules/enums/dados.enum';
+import { LogService } from 'src/app/modules/services/logs/logs.service';
 
 @Component({
   selector: 'app-acess-logs-table',
@@ -18,23 +18,23 @@ export class AcessLogsTableComponent implements OnInit {
   dataSource = new MatTableDataSource<Log>();
   displayedColumns = [
     'lockId',
-    'logId',
-    'estadoAtualFechadura',
-    'metodoAbertura',
-    'macAdress',
     'userName',
     'tipoEvento',
+    'estadoAtualFechadura',
+    'metodoAbertura',
     'horarioEvento',
+    'logId',
+    'macAdress',
   ];
   displayedColumnsUsuario = [
     'userId',
-    'logId',
-    'estadoAtualFechadura',
-    'metodoAbertura',
-    'macAdress',
     'userName',
     'tipoEvento',
+    'estadoAtualFechadura',
+    'metodoAbertura',
     'horarioEvento',
+    'logId',
+    'macAdress',
   ];
   constructor(private logService: LogService) {}
 
@@ -43,6 +43,7 @@ export class AcessLogsTableComponent implements OnInit {
   }
 
   public fetchLogs() {
+    this.dataSource.data = [];
     this.logService.fetchData().subscribe((res) => {
       res.reverse();
       this.allLogs = res;
@@ -51,14 +52,31 @@ export class AcessLogsTableComponent implements OnInit {
   }
 
   public filtro() {
-    this.dataSource.data = this.allLogs.filter((a) => {
-      if (this.visualizadoPorUsuario) {
-        const listraFiltrada =
-          a.payload.userName.includes(this.filterInput.value) || a.payload.userId.includes(this.filterInput.value);
-        return listraFiltrada;
-      }
-      return a.lockId.includes(this.filterInput.value) || a.mac.includes(this.filterInput.value);
-    });
+    let listraFiltrada = [];
+
+    if (this.visualizadoPorUsuario) {
+      listraFiltrada = this.allLogs.filter((log) => this.filtrarListaPorUsuario(log));
+    } else {
+      listraFiltrada = this.allLogs.filter((log) => this.filtrarPorFechadura(log));
+    }
+
+    this.dataSource.data = listraFiltrada;
+  }
+
+  private filtrarPorFechadura(log: any) {
+    return (
+      log.lockId.trim().toLowerCase().includes(this.filterInput.value.trim().toLowerCase()) ||
+      log.mac.trim().toLowerCase().includes(this.filterInput.value.trim().toLowerCase())
+    );
+  }
+
+  private filtrarListaPorUsuario(log: any) {
+    const payload = log.payload;
+
+    const listraFiltrada =
+      payload.userName.trim().toLowerCase().includes(this.filterInput.value.trim().toLowerCase()) ||
+      payload.userId.trim().toLowerCase().includes(this.filterInput.value.trim().toLowerCase());
+    return listraFiltrada;
   }
 
   public getTableText(text: number) {
@@ -76,9 +94,6 @@ export class AcessLogsTableComponent implements OnInit {
   }
 
   public getDisplayedColumns() {
-    if (this.visualizadoPorUsuario) {
-      return this.displayedColumnsUsuario;
-    }
-    return this.displayedColumns;
+    return this.visualizadoPorUsuario ? this.displayedColumnsUsuario : this.displayedColumns;
   }
 }

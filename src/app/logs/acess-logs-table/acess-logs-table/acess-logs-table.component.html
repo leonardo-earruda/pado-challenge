@@ -16,7 +16,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="standard" [formControl]="filterInput">
+      <mat-form-field appearance="standard" [formControl]="filterInput" ngDefaultControl>
         <mat-label>Pesquisar Log</mat-label>
         <input (keyup)="filtro()" matInput placeholder="Ex. Maria dos Santos" #input />
       </mat-form-field>
@@ -34,9 +34,14 @@
         <td mat-cell *matCellDef="let logs">{{ logs.lockId }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="logId">
-        <th mat-header-cell *matHeaderCellDef>ID do Log</th>
-        <td mat-cell *matCellDef="let logs">{{ logs.payload.logId }}</td>
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>Nome do usuário</th>
+        <td mat-cell *matCellDef="let logs">{{ logs.payload.userName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoEvento">
+        <th mat-header-cell *matHeaderCellDef>Tipo do Evento</th>
+        <td mat-cell *matCellDef="let logs">{{ getEventTypeText(logs.payload.type) }}</td>
       </ng-container>
 
       <ng-container matColumnDef="estadoAtualFechadura">
@@ -49,24 +54,19 @@
         <td mat-cell *matCellDef="let logs">{{ getTableText(logs.payload.method) }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="macAdress">
-        <th mat-header-cell *matHeaderCellDef>Mac Adress</th>
-        <td mat-cell *matCellDef="let logs">{{ logs.payload.method }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="userName">
-        <th mat-header-cell *matHeaderCellDef>Nome do usuário</th>
-        <td mat-cell *matCellDef="let logs">{{ logs.payload.userName }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="tipoEvento">
-        <th mat-header-cell *matHeaderCellDef>Tipo do Evento</th>
-        <td mat-cell *matCellDef="let logs">{{ getEventTypeText(logs.payload.type) }}</td>
-      </ng-container>
-
       <ng-container matColumnDef="horarioEvento">
         <th mat-header-cell *matHeaderCellDef>Data do Evento</th>
         <td mat-cell *matCellDef="let logs">{{ epochToDate(logs.payload.timestamp) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="logId">
+        <th mat-header-cell *matHeaderCellDef>ID do Log</th>
+        <td mat-cell *matCellDef="let logs">{{ logs.payload.logId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="macAdress">
+        <th mat-header-cell *matHeaderCellDef>Mac Adress</th>
+        <td mat-cell *matCellDef="let logs">{{ logs.mac }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>

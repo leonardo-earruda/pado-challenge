@@ -5,5 +5,5 @@ export enum MetodoAberturaEnum {
 
 export enum TipoDoEventoEnum {
   Abertura = 1,
-  Trancamento = 2,
+  Fechamento = 2,
 }

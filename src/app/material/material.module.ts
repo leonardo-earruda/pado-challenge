@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   MatTableModule,
@@ -14,6 +15,7 @@ const materialModules = [
   MatToolbarModule,
   MatIconModule,
   MatInputModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
