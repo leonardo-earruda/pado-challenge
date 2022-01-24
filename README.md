@@ -17,4 +17,13 @@ This project was generated with Angular CLI version 13.1.3.
 
 2. Run npx cypress open
 
-3. Click run all tests on top-right of the opened window.
+3. After running the command above, cypress should open this window shown in the image below.
+
+![image](https://user-images.githubusercontent.com/75282744/150808075-4107a27b-2704-4c57-8f6e-f0850408498f.png)
+
+4. Click on "Run 1 integration spec"
+
+5. After this, cypress should open the window shown in the image below and run the tests.
+
+![image](https://user-images.githubusercontent.com/75282744/150808992-3f5ad0ed-8426-4825-91ac-c3a434cf91f6.png)
+
